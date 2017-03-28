@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Silencesk.github.io">
-  <title>墨可的博客</title>
+  <title>知识收集 | 墨可的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="墨可的博客">
-<meta property="og:url" content="https://Silencesk.github.io/index.html">
+  <meta name="description" content="备忘1234567891011121314151617-- programming learn listhttps://github.com/vhf/free-programming-books/blob/master/free-programming-books-zh.md-- Java知识图谱收集整理http://mp.weixin.qq.com/s?__biz=MjM5MzMyNzg0MA=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识收集">
+<meta property="og:url" content="https://Silencesk.github.io/posts/wiki/2017-03-28-note-book.html">
 <meta property="og:site_name" content="墨可的博客">
+<meta property="og:description" content="备忘1234567891011121314151617-- programming learn listhttps://github.com/vhf/free-programming-books/blob/master/free-programming-books-zh.md-- Java知识图谱收集整理http://mp.weixin.qq.com/s?__biz=MjM5MzMyNzg0MA=">
+<meta property="og:updated_time" content="2017-03-28T09:39:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="墨可的博客">
+<meta name="twitter:title" content="知识收集">
+<meta name="twitter:description" content="备忘1234567891011121314151617-- programming learn listhttps://github.com/vhf/free-programming-books/blob/master/free-programming-books-zh.md-- Java知识图谱收集整理http://mp.weixin.qq.com/s?__biz=MjM5MzMyNzg0MA=">
   
     <link rel="alternative" href="/atom.xml" title="墨可的博客" type="application/atom+xml">
   
@@ -145,116 +149,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-reload" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-note-book" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/programming/2017-03-28-reload.html">spring-boot + ideal + jrebel应用自动reload方案</a>
-    </h1>
-  
-
-        
-        <a href="/posts/programming/2017-03-28-reload.html" class="archive-article-date">
-  	<time datetime="2017-03-28T09:24:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一直都琢磨着，想拥有这样的功能：对于即时修改的代码，无需重启应用程序，便能自动reload changes；以减少因重启应用花费的时间，提升程序开发效率。<br>曾经花费了一些时间尝试过修改代码的reload相关方案，包括<code>spring-reloaded</code>、<code>spring-boot-devtools</code>；但使用下来，结果并不理想。一直也知道，在reload方案中jrebel是最好的机制，但需要收费，也就没有过多的去关注。对于代码修改自动reload也就成为了自个心中的一个梗，悬而未解；我相信对于有问题解决强迫症的同学来说，这是很不爽的。<br>今天因为做一个东西，又激起了自身折腾的兴致，决定重新尝试下，把这个悬而未解的问题拿下。在花费了一些时间之后，总算是有所收获，达到了自己想要的效果。<br>所使用的方式：基于<code>jrebel</code>，这货收费果然是有道理的，下面就讲一下具体实现步骤。</p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>自己当前的开发环境： <code>MacOS</code> + <code>spring-boot</code> + <code>intellij ideal</code></p>
-<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><ol>
-<li>在intellij ideal中，安装jrebel插件<br><img src="/images/install-jrebel.png" alt="intall-jrebel"></li>
-<li>安装成功后，需要重启，效果图。图中所框图标，为jrebel方式run、debug启动<br><img src="/images/install-jrebel-success.png" alt="intall-jrebel-success"></li>
-<li>这时候的jrebel是没有进行注册的，需要进行注册。<ul>
-<li>访问<a href="https://my.jrebel.com/" target="_blank" rel="external">myJrebel</a>，可能需要翻墙，下面的操作也是 。</li>
-<li>至于翻墙手段，可以使用<a href="https://github.com/getlantern/lantern" target="_blank" rel="external">lantern。</a>。每月有700M的免费流量，如果不去youtobe，只是查查资料，也差不多够了。需注意，只有在需要访问被墙的网站才运行lantern。</li>
-<li>访问<a href="https://my.jrebel.com/" target="_blank" rel="external">myJrebel</a>，可能需要翻墙，下面的操作也是</li>
-<li>通过facebook或twitter账户登录注册就可以获得免费的激活码<br><img src="/images/my-jrebel-register-with-facebook.png" alt="my-jrebel-register-with-facebook"></li>
-<li>如果你已有facebook或twitter，那就直接登录；如果没有，那就注册一个吧</li>
-<li>注册facebook，直接使用手机号进行注册。因使用邮箱的facebook还是需要手机号确认，才能注册生效的</li>
-<li>my.jrebel登录成功后，需要填写一些信息，那就随便填吧</li>
-<li>成功后，会有免费的注册码了<br><img src="/images/my-jrebel-activate.png" alt="my-jrebel-activate"></li>
-<li>copy该注册码到jrebel激活界面去吧<br><img src="/images/activate.png" alt="activate"></li>
-</ul>
-</li>
-<li>进行jrebel配置，对需要启动的应用程序勾选，enable change ,会在对应的resouces目录增加rebel.xml。该文件并非源代码，考虑加入至<code>.gitignore</code>文件中<br><img src="/images/enable-jrebel.png" alt="enable-jrebel"><br><img src="/images/ignore-jrebel.png" alt="ignore-jrebel"></li>
-<li>tips：因ideal源文件是自动保存的，需要手动build之后，才能将修改的文件进行编译。不像在eclipse里边，<code>ctrl+s</code>保存之后就会自动重新build。这里可以自行设置一个快捷键，在修改后使用方便的快捷键重新build。对于MacOS，直接设置<code>ctrl+s</code>就OK了。<br><img src="/images/add-rebuild-keymap.png" alt="add-rebuild-keymap"></li>
-<li>如果有如下打印信息，则证明设置生效，后面就自行体验jrebel的reload神奇吧<br><img src="/images/jrebel-effective-show.png" alt=""></li>
-</ol>
-<h2 id="jrebel-reload的范围"><a href="#jrebel-reload的范围" class="headerlink" title="jrebel reload的范围"></a>jrebel reload的范围</h2><ul>
-<li>方法内部代码的修改</li>
-<li>增加新的方法，也不需要restart</li>
-<li>controller增加新的requestMapping</li>
-<li>代理类逻辑的变更，也是不需要重启的</li>
-<li>定义新的static变量，成员变量都是可以reload</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">devtools</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/编程/" class="article-tag-list-link color3">编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/programming/2017-03-28-reload.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-note-book" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/wiki/2017-03-28-note-book.html">知识收集</a>
+    <h1 class="article-title" itemprop="name">
+      知识收集
     </h1>
   
 
@@ -298,126 +200,36 @@
       
 
       
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">wiki</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/wiki/" class="article-tag-list-link color5">wiki</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/wiki/2017-03-28-note-book.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/wiki/2017-03-28-blog.html">博客搭建</a>
-    </h1>
-  
-
-        
-        <a href="/posts/wiki/2017-03-28-blog.html" class="archive-article-date">
-  	<time datetime="2017-03-28T09:22:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这里将记录个人博客搭建的历程，如果你也想搭建一个属于个人私有空间的博客系统，那可以继续阅读下去。希望这篇文章的记录，能对你有所帮助。</p>
-<h2 id="博客选型"><a href="#博客选型" class="headerlink" title="博客选型"></a>博客选型</h2><p>关于选型参考类的文章：<a href="http://www.maintao.com/2014/hexo-beginner%27s-guide/" target="_blank" rel="external">hexo入门指南</a>；这篇文章主题是hexo相关的，但作者在文章中也讲述了关于选型方面的内容，可供参考。对于我个人来说，能支持Markdown，一套自我感觉良好的主题（自由发挥了）就ok了。</p>
-<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>Hexo是一个快速，简单并且强大的博客框架。你可以用<code>Markdown</code>编写文章，Hexo则可以在几秒以内生成拥有漂亮主题的静态文件。</p>
-<ul>
-<li>本来是想写写教程的，发现人家官方便有很详尽的文档，也建议大家多看看官方资料。虽然这样时间花的可能多些，但试着去理解原生的东西总会让我们收获更大，若实在觉得难以理解，便可以搜索其他资料，加以参考。<a href="https://hexo.io" target="_blank" rel="external">Hexo</a></li>
-<li>主题<code>indigo</code><ul>
-<li><a href="https://imys.net/" target="_blank" rel="external">网站参考</a></li>
-<li><a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank" rel="external">源码参考</a></li>
-<li><a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">搭建教程</a></li>
-</ul>
-</li>
-<li>主题<code>yilia</code><ul>
-<li>网站参考：<a href="http://litten.me/" target="_blank" rel="external">litten</a> or <a href="https://joway.github.io/" target="_blank" rel="external">joway</a></li>
-</ul>
-</li>
-<li>主题<code>notes</code><ul>
-<li><a href="http://notes.iissnan.com/" target="_blank" rel="external">网站参考</a></li>
-<li><a href="https://github.com/iissnan/hexo-theme-notes" target="_blank" rel="external">源码参考</a><br>*</li>
-</ul>
-</li>
-<li>需按照步骤，重新安装Hexo</li>
-<li>规划功能列表<ul>
-<li>搜索</li>
-<li>相册</li>
-<li>打赏</li>
-<li>自动目录</li>
-</ul>
-</li>
-</ul>
-<h4 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h4><ul>
-<li>初级教程：(Create and host your blog for free with hexo &amp; Github)[<a href="https://malekbenz.com/blog/2016/09/10/Create-Host-Blog-for-free-with-Hexo-Github" target="_blank" rel="external">https://malekbenz.com/blog/2016/09/10/Create-Host-Blog-for-free-with-Hexo-Github</a>]</li>
-<li>参考现成的解决方案，总要比自己折腾，成果来的快些。参考下这位仁兄的<a href="https://yq.aliyun.com/articles/8607?do=login" target="_blank" rel="external">Hexo折腾记</a></li>
-</ul>
-<h4 id="troubleshooting"><a href="#troubleshooting" class="headerlink" title="troubleshooting"></a>troubleshooting</h4><ol>
-<li>使用hexo命令会报如下错误<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Error</span>: Cannot find <span class="built_in">module</span> <span class="string">'./build/Release/DTraceProviderBindings'</span></div><div class="line">  at <span class="built_in">Function</span>.Module._resolveFilename (<span class="built_in">module</span>.js:<span class="number">469</span>:<span class="number">15</span>)</div><div class="line">  at <span class="built_in">Function</span>.Module._load (<span class="built_in">module</span>.js:<span class="number">417</span>:<span class="number">25</span>)</div><div class="line">  at Module.require (<span class="built_in">module</span>.js:<span class="number">497</span>:<span class="number">17</span>)</div><div class="line">  at <span class="built_in">require</span> (internal/<span class="built_in">module</span>.js:<span class="number">20</span>:<span class="number">19</span>)</div><div class="line">  at <span class="built_in">Object</span>.&lt;anonymous&gt; (<span class="regexp">/usr/</span>local/lib/node_modules/hexo-cli/node_modules/dtrace-provider/dtrace-provider.js:<span class="number">17</span>:<span class="number">23</span>)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><code>找到dtrace-provider.js，并将console.log的地方注释掉就ok了。</code><a href="http://www.midaoi.com/2016/10/27/hexoError/" target="_blank" rel="external">参考</a></p>
-<ol>
-<li><p>node scripts/install.js 卡住不动<br><code>npm默认会从国外的服务器下载，可指定国内的淘宝npm镜像源</code><br><a href="http://blog.csdn.net/zhy421202048/article/details/53490247" target="_blank" rel="external">参考1</a>  or <a href="http://npm.taobao.org/" target="_blank" rel="external">参考2</a></p>
-</li>
-<li><p>按照正常的步骤执行了，但在hexo server后，进行访问时 <code>Error Cannot GET /</code><br><code>hexo安装缺失一些内容</code>，<a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">参考</a></p>
-</li>
-<li><p>使用<code>hexo deploy</code>报错</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">TypeError: source.replace is not a function</div><div class="line">    at Object.exports.parse (/Users/mokeo/blog/node_modules/.1.4.2@swig/lib/parser.js:438:19)</div><div class="line">    at parse (/Users/mokeo/blog/node_modules/.1.4.2@swig/lib/swig.js:354:19)</div><div class="line">    at Object.precompile (/Users/mokeo/blog/node_modules/.1.4.2@swig/lib/swig.js:486:23)</div><div class="line">    at Object.compile (/Users/mokeo/blog/node_modules/.1.4.2@swig/lib/swig.js:606:16)</div><div class="line">    at commitMessage .....</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>关键信息<code>commitMessage</code>。因博客根目录下的，<code>_config.yml</code>配置文件中deploy.message提交信息错误。需要加上引号，<a href="https://github.com/hexojs/hexo/issues/1810" target="_blank" rel="external">参考</a><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/Silencesk/Silencesk.github.io.git</span></div><div class="line"><span class="attr">  branch:</span> <span class="string">master</span></div><div class="line"><span class="attr">  message:</span> <span class="string">"<span class="template-variable">&#123;&#123; now('YYYY-MM-DD HH:mm:ss') &#125;&#125;</span>"</span></div></pre></td></tr></table></figure></p>
-<h3 id="jekyll"><a href="#jekyll" class="headerlink" title="jekyll"></a>jekyll</h3><p>// TODO: 待补充。。。</p>
-
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>如果觉得我的文章对您有用，请随意打赏。<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/images/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -448,88 +260,83 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/wiki/2017-03-28-blog.html">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://Silencesk.github.io/posts/wiki/2017-03-28-note-book.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
-
-
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+<nav id="article-nav">
+  
+    <a href="/posts/programming/2017-03-28-reload.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/programming/2017-03-27-hello-world.html">Hello World</a>
-    </h1>
-  
-
+          spring-boot + ideal + jrebel应用自动reload方案
         
-        <a href="/posts/programming/2017-03-27-hello-world.html" class="archive-article-date">
-  	<time datetime="2017-03-27T15:11:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/编程/" class="article-tag-list-link color3">编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/programming/2017-03-27-hello-world.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
+      </div>
+    </a>
+  
+  
+    <a href="/posts/wiki/2017-03-28-blog.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">博客搭建</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -537,7 +344,10 @@
 
 
   
+    <div class="duoshuo"></div>
   
+
+
 
 
           </div>
@@ -559,8 +369,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
